@@ -1,0 +1,31 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/omni-ledger
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=dvuser
+      - DB_PASSWORD=12345
+      - DB_NAME=omni_ledger
+    depends_on:
+      - db
+
+  db:
+    image: postgres:17-alpine
+    environment:
+      - POSTGRES_USER=dvuser
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=omni_ledger
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      
+volumes:
+  postgres_data:
