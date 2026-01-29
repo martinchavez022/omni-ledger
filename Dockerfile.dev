@@ -4,6 +4,8 @@ WORKDIR /omni-ledger
 
 # install air
 RUN go install github.com/air-verse/air@latest
+RUN go get gorm.io/gorm
+RUN go get gorm.io/driver/postgres
 
 COPY go.mod go.sum ./
 RUN go mod download

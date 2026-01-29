@@ -1,30 +1,21 @@
 package main
 
 import (
-
-	"net/http"
+	"omni-ledger/internal/database"
+	"omni-ledger/internal/handlers"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	// 1. Initialize the Gin engine
+	// Initialize database
+	database.Connect()
+
+	// Initialize Router
 	r := gin.Default()
 
-	// 2. Define a root route
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"status":  "success",
-			"message": "OmniLedger API is live!",
-		})
-	})
+	// Routes
+	r.POST("/transactions",  handlers.CreateTransaction)
+	r.GET("/transactions", handlers.GetTransaction)
 
-	// Another route
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message":"pong",
-		})
-	})
-
-	// 3. Start the server on port 8080
 	r.Run(":8080")
 }
