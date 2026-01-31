@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+
 func CreateTransaction(c *gin.Context) {
 	var input models.Transaction
 	if err := c.ShouldBindJSON(&input); err != nil {
@@ -22,3 +23,4 @@ func GetTransaction(c *gin.Context) {
 	database.DB.Find(&list)
 	c.JSON(http.StatusOK, list)
 }
+

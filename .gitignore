@@ -1,2 +1,4 @@
 .air.toml
 build-errors.log
+tmp/
+tmp/air.log

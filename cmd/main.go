@@ -14,7 +14,7 @@ func main() {
 	r := gin.Default()
 
 	// Routes
-	r.POST("/transactions",  handlers.CreateTransaction)
+	r.POST("/transaction",  handlers.CreateTransaction)
 	r.GET("/transactions", handlers.GetTransaction)
 
 	r.Run(":8080")
